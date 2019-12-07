@@ -1,0 +1,103 @@
+import java.util.*;
+class Car {
+    String brand;
+    int price;
+    double rating;
+    public Car(String brand,int price,double rating){
+        this.brand=brand;
+        this.price=price;
+        this.rating=rating;
+    }
+    /*public int compareTo(Car o){
+    
+        return this.brand.compareTo(o.brand);
+    }*/
+}    
+class SortByBrand implements Comparator<Car>{
+    public int compare(Car c1,Car c2){
+        return c1.brand.compareTo(c2.brand);
+    }
+}
+
+class SortByPrizeLtoH implements Comparator<Car>{
+    public int compare(Car c1,Car c2){
+        return c1.price-c2.price;
+    }
+}
+class SortByPrizeHtoL implements Comparator<Car>{
+    public int compare(Car c1,Car c2){
+        return c2.price-c1.price;
+    }
+}
+class SortByRatingLtoH implements Comparator<Car>{
+    public int compare(Car c1,Car c2){
+        return (int)c1.rating-(int)c2.rating;
+    }
+}
+class SortByRatingHtoL implements Comparator<Car>{
+    public int compare(Car c1,Car c2){
+        return (int)c2.rating-(int)c1.rating;
+    }
+}
+public class Main{
+    public static void main(String args[]){
+        ArrayList <Car> c=new ArrayList<Car>();
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter number of cars:\t");
+        int num=sc.nextInt();
+        for(int i=0;i<num;i++){
+            sc.nextLine();
+            System.out.println("Enter brand:");
+            String brand=sc.next();
+            System.out.println("Enter price:");
+            int price=sc.nextInt();
+            System.out.println("Enter rating:");
+            double rating=sc.nextDouble();
+            c.add(new Car(brand,price,rating));
+            
+        }
+        System.out.println("1.Sort By Brand\n2.Sort By Prize\n3.Sort By Rating");
+        int ch=sc.nextInt();
+        switch(ch){
+            case 1:System.out.println("Sorted By Brand");
+                   Collections.sort(c,new SortByBrand());
+                      
+                break;
+            case 2:
+                System.out.println("1.Low to High\n2.High to Low");                     
+                   int ch2=sc.nextInt();
+                   if(ch2==1){
+                        System.out.println("Sorted By Low to High");
+                        Collections.sort(c,new SortByPrizeLtoH());
+                       
+                   }
+                   else{
+                        System.out.println("Sorted By High to Low\n");
+                        Collections.sort(c,new SortByPrizeHtoL());
+                   }    
+                break;
+            case 3:
+                System.out.println("1.Low to High\n2.High to Low");                     
+                   int ch3=sc.nextInt();
+                   if(ch3==1){
+                        System.out.println("Sorted By Low to High");
+                        Collections.sort(c,new SortByRatingLtoH());  
+                   }
+                   else{
+                        System.out.println("Sorted By High to Low\n");
+                        Collections.sort(c,new SortByRatingHtoL());  
+                   }    
+                break;
+            default:
+                break;
+        }
+    
+        Iterator <Car> itr=c.iterator();
+        System.out.print("Brand\tPrice\tRating\n");
+        while(itr.hasNext()){
+            Car temp=itr.next();
+            System.out.println(temp.brand+"\t"+temp.price+"\t"+temp.rating);  
+        }
+       
+    }
+}
