@@ -1,0 +1,63 @@
+import java.util.*;
+class Main{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        HashMap <Integer,String> hm=new HashMap<Integer,String>();
+        
+        //GETTING INPUT VALUES
+        
+        for(int i=0;i<n;i++){
+            Integer a=sc.nextInt();
+            String b=sc.nextLine();
+            hm.put(a,b);
+        }
+        
+        //DISPLAYING HASH TABLE
+        
+        Iterator itr=hm.entrySet().iterator();
+        while(itr.hasNext()){
+            Map.Entry m=(Map.Entry)itr.next();
+            System.out.print(m.getValue());  //Displays KEY
+            System.out.println(m.getKey());  //Displays VALUES
+            
+        }
+        
+        //SORT BY KEY
+        
+        System.out.println("AFTER SORT BY KEY");
+        //Tree Map will order the MAP according to KEYS
+        
+        TreeMap<Integer,String> map = new TreeMap<Integer,String>(hm);//Convert HashMap to TreeMap 
+         
+        Iterator itr2 = map.entrySet().iterator();
+        while(itr2.hasNext()) {
+           Map.Entry m2 = (Map.Entry)itr2.next();
+           System.out.print(m2.getKey());
+           System.out.println(m2.getValue());
+        }
+        
+        ///SORT BY VALUE
+        
+        // Convert to List and Sort it and Display Values only
+        
+        System.out.println("AFTER SORT BY VALUE");
+        List<Map.Entry<Integer, String>> list=new ArrayList<>(hm.entrySet());//converts HashMap to  List holding <Map.Entry<Integer, String>>
+
+        Collections.sort(list,new Comparator() //Sortimg of lis
+        {
+            public int compare(Object obj1, Object obj2)
+            {
+                return ((Comparable)((Map.Entry)(obj1)).getValue()).compareTo(((Map.Entry)(obj2)).getValue());
+            }
+        }
+        );
+        //Display sorted list
+        Iterator<Map.Entry<Integer, String>> itr3=list.iterator();
+        while(itr3.hasNext()){
+            Map.Entry temp=itr3.next();
+            
+            System.out.print(temp.getValue());
+        }
+            }
+}
