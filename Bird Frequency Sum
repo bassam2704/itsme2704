@@ -1,0 +1,33 @@
+import java.util.*;
+class Main{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        HashMap <Integer,Integer> hm=new HashMap<Integer,Integer>();
+        Arrays.sort(arr);
+        for(int i=0;i<n;i++){
+            if(!hm.containsKey(arr[i])){
+                hm.put(arr[i],1);
+            }
+            else{
+                int value=hm.get(arr[i]);
+                value++;
+                hm.replace(arr[i],value);
+            }
+        }
+        int max=0,max1=0;
+        Iterator itr=hm.entrySet().iterator();
+        while(itr.hasNext()){
+            Map.Entry m=(Map.Entry)itr.next();
+            if((int)m.getValue()>max){
+                max=(int)m.getValue();
+                max1=(int)m.getKey();
+            }
+        }
+        System.out.println(max1);
+    }
+}
