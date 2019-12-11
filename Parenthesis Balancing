@@ -1,5 +1,5 @@
 import java.util.*;  
-class Main{
+public class Main{
     public static boolean exBalanced(String str){
         char arr[]=str.toCharArray();
         if(arr[0]==')'||arr[0]=='}'|| arr[0]==']'){
@@ -10,7 +10,7 @@ class Main{
             if(arr[i]=='('||arr[i]=='{'|| arr[i]=='['){
                 st.push(arr[i]);
             }
-            else if(arr[0]==')'||arr[0]=='}'|| arr[0]=='}'){
+            else if(arr[i]==')'||arr[i]=='}'|| arr[i]==']'){
                 char match=getMatch(arr[i]);
                 if(match==st.peek()){
                     st.pop();
@@ -20,15 +20,22 @@ class Main{
                 }
             }
         }
-        return true;
+        if(st.isEmpty())
+          return true;
+        else
+          return false;
+          
+        
     }
     public static char getMatch(char arr){
-        if(arr=='(')
-            return(')');
-        else if(arr=='{')
-            return('}');
-        else
-            return(']');
+        if(arr==')')
+            return '(';
+        else if(arr=='}')
+            return '{';
+        else if(arr ==']')
+            return '[';
+        
+        return '0';
     } 
     public static void main(String args[]){  
         Scanner sc=new Scanner(System.in);
@@ -39,4 +46,4 @@ class Main{
             System.out.println("Unbalanced");
         
     }
-}    
+}
