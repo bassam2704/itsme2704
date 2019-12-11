@@ -1,0 +1,42 @@
+import java.util.*;  
+class Main{
+    public static boolean exBalanced(String str){
+        char arr[]=str.toCharArray();
+        if(arr[0]==')'||arr[0]=='}'|| arr[0]==']'){
+            return false;
+        }
+        Stack <Character> st=new Stack<Character>();
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]=='('||arr[i]=='{'|| arr[i]=='['){
+                st.push(arr[i]);
+            }
+            else if(arr[0]==')'||arr[0]=='}'|| arr[0]=='}'){
+                char match=getMatch(arr[i]);
+                if(match==st.peek()){
+                    st.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static char getMatch(char arr){
+        if(arr=='(')
+            return(')');
+        else if(arr=='{')
+            return('}');
+        else
+            return(']');
+    } 
+    public static void main(String args[]){  
+        Scanner sc=new Scanner(System.in);
+        String str=sc.nextLine();
+        if(exBalanced(str))
+            System.out.println("Balanced");
+        else
+            System.out.println("Unbalanced");
+        
+    }
+}    
