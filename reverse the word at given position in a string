@@ -1,0 +1,23 @@
+import java.util.*;
+class Main{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        String str=sc.nextLine();
+        String a[]=str.split(" ");
+        int n=sc.nextInt();
+        if(n>a.length){
+            System.out.println("-1");
+           
+        }
+        else{
+        //System.out.println(a[n]);
+        StringBuffer sb=new StringBuffer(a[n-1]);
+        sb=sb.reverse();
+        a[n-1]=sb.toString();
+        for(String i: a){
+            System.out.print(i+" ");
+        }
+        }
+        
+    }
+}
