@@ -10,9 +10,9 @@ public class Main{
             if(arr[i]=='('||arr[i]=='{'|| arr[i]=='['){
                 st.push(arr[i]);
             }
-            else if(arr[i]==')'||arr[i]=='}'|| arr[i]==']'){
+            else if(arr[i]==')'||arr[i]=='}'|| arr[i]==']'){ //if * is considered as closing else if(arr[i]==')'||arr[i]=='}'|| arr[i]==']'|| arr[i]=='')
                 char match=getMatch(arr[i]);
-                if(match==st.peek()){
+                if(match==st.peek()){ //if * is considerd as closing if(match==st.peek() || ch=="*")
                     st.pop();
                 }
                 else{
@@ -34,7 +34,12 @@ public class Main{
             return '{';
         else if(arr ==']')
             return '[';
-        
+            
+        /*if * is considered as closing
+        else if(arr =='*')
+            return '*';
+         */   
+         
         return '0';
     } 
     public static void main(String args[]){  
