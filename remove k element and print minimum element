@@ -1,0 +1,36 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String s=sc.next();
+		char a[]=s.toCharArray();
+		int n=sc.nextInt();
+		int flag=0;
+	    for(int i=0;i<n;i++){
+            flag=0;
+	        for(int j=0;j<a.length-1;j++){
+	           if(a[j]!='^'){
+	                if(a[j]>a[j+1]){
+		                a[j]='^';
+		                flag=1;
+		                break;
+		            }
+	           }
+	            
+	        }
+	        if(flag==0){
+	            a[a.length-1]='^';
+	        }
+	        s="";
+	        for(int k=0;k<a.length;k++){
+    		    if(a[k]!='^'){
+    		        s+=a[k];
+    		    } 
+	        }
+	        a=s.toCharArray();
+	        
+	    }  
+	    System.out.println(s);
+	}
+}
