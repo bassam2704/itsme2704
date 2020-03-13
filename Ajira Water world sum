@@ -1,0 +1,79 @@
+import java.util.*;
+class Filling{
+
+    int filled;
+    int capacity;
+    public Filling(int f,int c){
+       
+        filled=f;
+        capacity=c;
+    }
+   
+}
+class Main{
+   
+    public static void main(String args[]){
+        Scanner sc=new Scanner (System.in);
+        HashMap<String,Filling> hm=new HashMap<>();
+        int days=sc.nextInt();
+        int noclus=sc.nextInt();
+        sc.nextLine();
+        int sum=0;
+       
+        for(int i=0;i<noclus;i++){
+            String clus=sc.next();
+            int f=sc.nextInt();
+            int c=sc.nextInt();
+            sum+=c;
+            hm.put(clus,new Filling(f,c));
+        }
+        int linkn=sc.nextInt();
+        LinkedHashMap<String,String> hm1=new LinkedHashMap<>();
+        sc.nextLine();
+        for(int i=0;i<linkn;i++){
+            String str=sc.nextLine();
+            String stra[]=str.split("_");
+            hm1.put(stra[0],stra[1]);
+        }
+        Iterator<Map.Entry<String,Filling>> itr=hm.entrySet().iterator();
+        int extra=0;
+        String k="";
+        int div=0;
+        int diff=0;
+        while(itr.hasNext()){
+            Map.Entry<String,Filling> m=(Map.Entry)itr.next();
+            Filling a=m.getValue();
+           
+            int b=a.filled;
+            int c=a.capacity;
+            div=c/b;
+            if(div<days){
+                diff=days-div;
+                k=m.getKey();
+                extra+=diff*c;
+            }
+        }
+        String mainkey="";
+        Iterator<Map.Entry<String,String>> itr1=hm1.entrySet().iterator();
+        while(itr1.hasNext()){
+            Map.Entry<String,String> m1=(Map.Entry)itr1.next();
+            if(m1.getValue().equals(k)){
+                mainkey=m1.getKey();
+                break;
+            }
+           
+        }
+        Iterator<Map.Entry<String,Filling>> itr2=hm.entrySet().iterator();
+        while(itr2.hasNext()){
+            Map.Entry<String,Filling> m2=(Map.Entry)itr2.next();
+            Filling a=m2.getValue();
+            k=m2.getKey();
+            if(k.equals(mainkey)){
+                 extra+=diff*(a.capacity);
+            }
+           
+        }
+        System.out.println(sum+extra);
+    }
+}
+
